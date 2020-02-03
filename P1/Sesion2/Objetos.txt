@@ -1,0 +1,15 @@
+let mi_objeto = {
+  nombre: "mi-elemento",
+  x : 10,
+  y : 20
+}
+
+
+let = var
+
+Diferenciar objetos por :
+* const
+
+* let para ambito local
+
+* var para ambito global
