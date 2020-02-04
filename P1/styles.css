@@ -1,0 +1,90 @@
+  body {
+    background-position:top;
+    background-size:contain;
+    margin: 15px;
+
+  }
+
+  hr {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-style: double;
+    color:white;
+  }
+  h1 {
+    font-style:courier;
+    font-size:50px;
+    color:white;
+    margin-top: 10px;
+    background-color:powderblue;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .info, .otros{
+    text-align: center;
+  }
+  #datos{
+    font-style:courier;
+    font-size:50px;
+    padding: 10px;
+    margin-top: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  li, .Habilidades{
+    font-style: italic;
+    list-style-position: inside;
+    margin-left: 100px;
+  }
+  h2, #datos {
+    text-align: center;background-color:powderblue;
+  }
+  .Datos{
+    background-color:rgba(240,248,255,0.5);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 10px;
+  }
+  ul {
+    list-style-position: inside;
+    list-style-type:circle;
+  }
+  .telf, a {
+    font-size:20px; text-align: center;
+  }
+  .infofoto{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 8px;
+    float:left;
+
+  }
+  .instagram {
+  float:right;
+  margin-right: 20px;
+  }
+  .infofoto {
+    color: white;
+    text-align: center;
+  }
+   img{
+     border-radius: 8px;
+   }
+
+
+   * {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
