@@ -6,8 +6,6 @@
     background-origin: border-box;
     background-attachment: fixed;
 
-
-
   }
 
   #subtitulo {
@@ -27,16 +25,13 @@
     padding: 25px 5px 5px 20px;
     background-color: ;
 
-
-
   }
   .info, .otros{
     text-align: center;
   }
-  #espiga{
+  #cesta{
   float: right;
   margin-right: 200px;
-
   }
 
 
