@@ -1,33 +1,56 @@
-//-- Puerto donde recibir las peticiones
-const PUERTO = 8080;
-
-//-- Modulo http
 const http = require('http');
+const url = require('url');
+const fs = require('fs');
+const path = require('path');
+const PUERTO = 8080
 
-console.log("Arrancando servidor...")
+//-- Configurar y lanzar el servidor. Por cada peticion recibida
+//-- se imprime un mensaje en la consola
+http.createServer((req, res) => {
+  console.log("----------> Peticion recibida")
+  let q = url.parse(req.url, true);
 
-//-- Funcion para atender a una Peticion
-//-- req: Mensaje de solicitud
-//-- res: Mensaje de respuesta
-function peticion(req, res) {
+  let filename = ""
 
-  //-- Peticion recibida
-  console.log("Peticion recibida!")
+  //-- Obtener fichero a devolver
+  if (q.pathname == "/")
+    filename += "index.html"
 
-  //-- Crear mensaje de respuesta
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end('Hello World!');
+  if (q.pathname != "/")
+      filename += "."+ q.pathname
+//  ./P1.png fichero valido leer png path.extname
+console.log("Fichero:" + filename);
+console.log("MIME:" + path.extname(q.pathname));
 
-}
+  var content_type = path.extname(q.pathname);
 
-//-- Inicializar el servidor
-//-- Cada vez que recibe una petición
-//-- invoca a la funcion peticion para atenderla
-const server = http.createServer(peticion)
+  //-- Leer fichero
+  fs.readFile(filename, function(err, data) {
 
-//-- Configurar el servidor para escuchar en el
-//-- puerto establecido
-server.listen(PUERTO);
+    //-- Fichero no encontrado. Devolver mensaje de error
+    if (err) {
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Found");
+    }
 
-console.log("Servidor LISTO!")
-console.log("Escuchando en puerto: " + PUERTO)
+    //-- Tipo mime por defecto: html
+
+    let mime = "text/html"
+    if (content_type == ".css")
+      mime = "text/css"
+    if (content_type == ".png")
+      mime = "image/png"
+    if (content_type == ".jpg")
+      mime = "image/jpg"
+
+    //-- Generar el mensaje de respuesta
+    res.writeHead(200, {'Content-Type': mime});
+    res.write(data);
+    res.end();
+  });
+
+
+}).listen(PUERTO);
+
+console.log("Servidor corriendo...")
+console.log("Puerto: " + PUERTO)
