@@ -112,6 +112,9 @@
   float: left;
   margin-left: 30px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 40px;
+  font-size: 35px;
   font-style: oblique;
+}
+#gallegas{
+  float: left;
 }
