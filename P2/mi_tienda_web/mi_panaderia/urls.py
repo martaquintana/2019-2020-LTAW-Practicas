@@ -9,5 +9,8 @@ from . import views
 urlpatterns = [
     # -- Vista pricipal (índice)
     path('', views.index, name='index'),
-    
+    path('panaderia.html/', views.panaderia, name='panaderia'),
+    path('bolleria.html/', views.bolleria, name='bolleria'),
+    path('pasteleria.html/', views.pasteleria, name='pasteleria'),
+
 ]
