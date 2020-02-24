@@ -1,8 +1,7 @@
 {% load staticfiles %}
 
-<!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="styles.css" type="text/css">
+  <link rel="stylesheet" href="{% static 'styles.css'%}" type="text/css">
   <head>
     <meta charset="utf-8">
     <title>Pastelería El Foro</title>
@@ -10,9 +9,9 @@
   <body>
     <div  class= "informacion" href="pasteleria.html" style=" padding:10px; padding-bottom: 1000px;margin-top: 5%;">
 
-      <div id="galeria"><img src="panaderia-fotos/pasteles.jpg" alt="Bollos" style=" margin-left: 20px; float:left" height=90% />
-        <img src="panaderia-fotos/tarta-toro.jpg" alt="Bollos" style=" margin-left: 20px; float:left" height=90%/>
-        <img src="panaderia-fotos/tarta-boda.png" alt="Bollos" style=" margin-left: 20px; float:left" height=90%/></div>
+      <div id="galeria"><img src="{% static 'panaderia-fotos/pasteles.jpg'%}" alt="Bollos" style=" margin-left: 20px; float:left" height=90% />
+        <img src="{% static 'panaderia-fotos/tarta-toro.jpg'%}" alt="Bollos" style=" margin-left: 20px; float:left" height=90%/>
+        <img src="{% static 'panaderia-fotos/tarta-boda.png'%}" alt="Bollos" style=" margin-left: 20px; float:left" height=90%/></div>
 
       <h2 style=" font-size: 40px;">Tartas originales y pastelitos para ocasiones especiales</h2>
       <p style=" margin-left: 50px; float: right; font-size: 25px; font-style: oblique;  font-family: Latin Modern Roman 10;"> Hacemos tu tarta de cumpleaños, boda o acontencimiento especial por encargo. <br>
