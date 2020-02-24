@@ -12,5 +12,5 @@ urlpatterns = [
     path('panaderia.html/', views.panaderia, name='panaderia'),
     path('bolleria.html/', views.bolleria, name='bolleria'),
     path('pasteleria.html/', views.pasteleria, name='pasteleria'),
-
+    path('list/', views.list, name='list'),
 ]
