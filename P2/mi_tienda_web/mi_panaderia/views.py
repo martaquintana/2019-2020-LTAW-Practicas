@@ -14,19 +14,17 @@ def index(request):
 
 
 def panaderia(request):
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-    return render(request, 'panaderia.html', {'numero':str(numero)})
+    
+
+    return render(request, 'panaderia.html', )
 
 def bolleria(request):
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-    return render(request, 'bolleria.html', {'numero':str(numero)})
+
+    return render(request, 'bolleria.html', )
 
 def pasteleria(request):
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-    return render(request, 'pasteleria.html', {'numero':str(numero)})
+
+    return render(request, 'pasteleria.html', )
 
 def list(request):
     productos = Producto.objects.all()
