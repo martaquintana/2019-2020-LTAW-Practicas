@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<html lang="es" dir="ltr">
+<link rel="stylesheet" href="{% static 'listado.css'%}" type="text/css">
+  <head>
+    <meta charset="utf-8">
+    <title>Formulario 1</title>
+  </head>
+  <body>
+    <h1>Formulario de Pedido</h1>
+    <div>
+    <form  action="/mi_panaderia/recepcion/" method="post">
+      {% csrf_token %}
+      <label>Nombre de la persona que hace el pedido: <label>
+      <input type="text" name="nombre"/>
+      <br>
+      <label>Articulo <label>
+      <input type="text" name="articulo"  />
+      <input type="submit" value="OK" />
+    </form>
+    </div>
+  </body>
+</html>

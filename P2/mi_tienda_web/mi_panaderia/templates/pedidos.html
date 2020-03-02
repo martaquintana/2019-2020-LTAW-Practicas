@@ -1,0 +1,18 @@
+{% load staticfiles %}
+  <html lang="es" dir="ltr">
+    <link rel="stylesheet" href="{% static 'listado.css'%}" type="text/css">
+    <head>
+      <meta charset="utf-8">
+      <title>Listado Pedidos</title>
+    </head>
+    <body>
+      <div>
+      <h1>Pedidos</h1>
+      <ul>
+      {% for prod in pedidos %}
+          <li>{{ prod.nombre }}: --> Precio: {{prod.articulo}}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+    </body>
+  </html>

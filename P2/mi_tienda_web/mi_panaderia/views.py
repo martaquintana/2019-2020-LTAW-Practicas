@@ -14,7 +14,7 @@ def index(request):
 
 
 def panaderia(request):
-    
+
 
     return render(request, 'panaderia.html', )
 
@@ -29,3 +29,24 @@ def pasteleria(request):
 def list(request):
     productos = Producto.objects.all()
     return render(request, 'listado.html', {'productos':productos})
+
+
+def formulario(request):
+    return render(request, 'formulario.html', {})
+
+from mi_panaderia.models import Pedidos
+
+def recepcion(request):
+    # -- Obtener el nombre de la persona
+    persona = request.POST['nombre']
+    articulo = request.POST['articulo']
+    # -- Imprimirlo en la consola del servidor
+    print(f" PEDIDO RECIBIDO!!! ----> {persona + articulo}")
+    p= Pedidos(nombre=persona , articulo=articulo)
+    p.save()
+    return HttpResponse("Datos recibidos!!. Comprador: " + request.POST['nombre'])
+
+def pedidos(request):
+
+    pedidos = Pedidos.objects.all()
+    return render(request, 'pedidos.html', {'pedidos':pedidos})
