@@ -5,16 +5,17 @@ from random import randint
 from django.template import Template, Context
 from django.template.loader import get_template
 from mi_panaderia.models import Producto
+from mi_panaderia.models import Pedidos
+from datetime import datetime
 
 
 def index(request):
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-    return render(request, 'index.html', {'numero':str(numero)})
+    # -- Obtener fecha de hoy
+    now = datetime.now()
+    return render(request, 'index.html', {'numero':now})
 
 
 def panaderia(request):
-
 
     return render(request, 'panaderia.html', )
 
@@ -34,7 +35,6 @@ def list(request):
 def formulario(request):
     return render(request, 'formulario.html', {})
 
-from mi_panaderia.models import Pedidos
 
 def recepcion(request):
     # -- Obtener el nombre de la persona
