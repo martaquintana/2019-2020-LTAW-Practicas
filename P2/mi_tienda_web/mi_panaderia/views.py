@@ -16,16 +16,63 @@ def index(request):
 
 
 def panaderia(request):
-
-    return render(request, 'panaderia.html', )
+    productos = Producto.objects.all()
+    return render(request, 'panaderia.html',{
+    #--Pistolas
+    'precio1':productos[0].precio,
+    'nombre1':productos[0].nombre,
+    'stock1':productos[0].stock,
+    #--Chapata
+    'precio2':productos[1].precio,
+    'nombre2':productos[1].nombre,
+    'stock2':productos[1].stock,
+    #--Gallega
+    'precio3':productos[2].precio,
+    'nombre3':productos[2].nombre,
+    'stock3':productos[2].stock,
+    #--Candeal
+    'precio4':productos[3].precio,
+    'nombre4':productos[3].nombre,
+    'stock4':productos[3].stock,
+    #--Integral
+    'precio5':productos[4].precio,
+    'nombre5':productos[4].nombre,
+    'stock5':productos[4].stock,
+    } )
 
 def bolleria(request):
-
-    return render(request, 'bolleria.html', )
+    productos = Producto.objects.all()
+    return render(request, 'bolleria.html',{
+    #--Magdalenas
+    'precio1':productos[7].precio,
+    'nombre1':productos[7].nombre,
+    'stock1':productos[7].stock,
+    #--Donuts
+    'precio2':productos[5].precio,
+    'nombre2':productos[5].nombre,
+    'stock2':productos[5].stock,
+    #--Palmeras
+    'precio3':productos[6].precio,
+    'nombre3':productos[6].nombre,
+    'stock3':productos[6].stock,
+    })
 
 def pasteleria(request):
-
-    return render(request, 'pasteleria.html', )
+    productos = Producto.objects.all()
+    return render(request, 'pasteleria.html',{
+    #--Pasteles
+    'precio1':productos[8].precio,
+    'nombre1':productos[8].nombre,
+    'stock1':productos[8].stock,
+    #--Tarta Plancha
+    'precio2':productos[9].precio,
+    'nombre2':productos[9].nombre,
+    'stock2':productos[9].stock,
+    #--Tarta Circular
+    'precio3':productos[10].precio,
+    'nombre3':productos[10].nombre,
+    'stock3':productos[10].stock,
+    } )
 
 def list(request):
     productos = Producto.objects.all()
