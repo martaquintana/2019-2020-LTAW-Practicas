@@ -1,0 +1,125 @@
+  body {
+    background-image: url('panaderia-fotos/fondo.png');
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    background-origin: border-box;
+    background-attachment: fixed;
+
+  }
+
+  #subtitulo {
+    font-size:15px;
+    margin-top: 0px;
+    padding-bottom: 20px;
+    background-color: ;
+  }
+
+  h1 {
+    float: right;
+    font-size:50px;
+    color:black;
+    text-align: center;
+    font-family: "Latin Modern Roman 10";
+    font-style: oblique;
+    padding: 25px 5px 5px 20px;
+    background-color: ;
+
+  }
+  .info, .otros{
+    text-align: center;
+  }
+  #cesta{
+  float: right;
+  margin-right: 200px;
+  }
+
+
+  h2 {
+    font-family: "Latin Modern Roman 10";
+    font-style: oblique;
+    text-align: center;
+    background-color:;
+    color: black;
+  }
+  .Datos{
+    background-color:rgba(255,255,255,0.95);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+    margin-top: 100px;
+    margin-right: 400px;
+    font-size: 20px;
+  }
+  .instagram {
+  float:right;
+  margin-top: 100px;
+  margin-right: 40px;
+  }
+
+
+   img{
+     border-radius: 3px;
+     display:block;
+     margin:auto;
+   }
+
+   * {
+  box-sizing: border-box;
+}
+#panaderia {
+    margin-top: 198px;
+
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  text-decoration: none;
+  width: 32.32%;
+  margin: 5px;
+  padding: 15px;
+  background-color:rgba(255,255,255,0.95);
+  padding-top: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+
+}
+
+.column:hover {
+
+    transform: translate(0,-20px);
+    -webkit-transform: translate(0,-20px);
+    -o-transform: translate(0,-20px);
+    -moz-transform: translate(0,-20px);
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.informacion {
+
+  margin: 100px;
+  padding: 200px;
+  background-color:rgba(255,255,255,0.95);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+}
+
+#galeria{
+  margin-top: 2%;
+  height: 45%;
+}
+
+#artesanos{
+  float: left;
+  margin-left: 30px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 35px;
+  font-style: oblique;
+}
+#gallegas{
+  float: left;
+}
