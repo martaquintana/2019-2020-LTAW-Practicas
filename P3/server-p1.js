@@ -1,22 +1,15 @@
-//-- Puerto donde recibir las peticiones
-const PUERTO = 8080;
-
-//-- Modulos a usar
 const http = require('http');
 const url = require('url');
+const fs = require('fs');
+const path = require('path');
+const PUERTO = 8080
 
-
-//-- Funcion para atender a una Peticion
-//-- req: Mensaje de solicitud
-//-- res: Mensaje de respuesta
-function peticion(req, res) {
+//-- Configurar y lanzar el servidor. Por cada peticion recibida
+//-- se imprime un mensaje en la consola
+http.createServer((req, res) => {
   console.log("----------> Peticion recibida")
   let q = url.parse(req.url, true);
   console.log("Petición: " + q.pathname)
-
-  //-- Leer las cookies
-  const cookie = req.headers.cookie;
-  console.log("Cookie: " + cookie)
 
 
 let filename = ""
@@ -24,19 +17,6 @@ let filename = ""
   //-- Obtener fichero a devolver
   if (q.pathname == "/")
     filename += "index.html"
-    if (!cookie) {
-      content = "\nNo te conozco... Registrate!\n"
-      content += "Accede a /login"
-
-    //-- Hay definida una Cookie.
-    } else {
-      content += "Obijuan"
-    }
-  if (q.pathname == "/login")
-    content = "Registrado! Cookie enviada al navegador!"
-
-    //-- ESTABLECER LA COOKIE!!
-    res.setHeader('Set-Cookie', 'user=obijuan')
 
   if (q.pathname != "/")
       filename += "."+ q.pathname
@@ -72,16 +52,7 @@ console.log("MIME:" + path.extname(q.pathname));
   });
 
 
-}
+}).listen(PUERTO);
 
-//-- Inicializar el servidor
-//-- Cada vez que recibe una petición
-//-- invoca a la funcion peticion para atenderla
-const server = http.createServer(peticion)
-
-//-- Configurar el servidor para escuchar en el
-//-- puerto establecido
-server.listen(PUERTO);
-
-console.log("Servidor LISTO!")
-console.log("Escuchando en puerto: " + PUERTO)
+console.log("Servidor corriendo...")
+console.log("Puerto: " + PUERTO)

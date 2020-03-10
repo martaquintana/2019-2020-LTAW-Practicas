@@ -1,30 +1,80 @@
 const http = require('http');
 const url = require('url');
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 const PUERTO = 8080
 
-//-- Configurar y lanzar el servidor. Por cada peticion recibida
-//-- se imprime un mensaje en la consola
-http.createServer((req, res) => {
-  console.log("----------> Peticion recibida")
-  let q = url.parse(req.url, true);
+
+//-- Funcion para atender a una Peticion
+//-- req: Mensaje de solicitud
+//-- res: Mensaje de respuesta
+function peticion(req, res) {
+
+  //-- Mostrar en la consola el recurso al que se accede
+  const q = url.parse(req.url, true);
   console.log("Petición: " + q.pathname)
 
+  //-- Creamos varaibles para obtener terminaciones y el objeto que queremos
 
-let filename = ""
+  let recurso = q.pathname
+  let filename =""
 
-  //-- Obtener fichero a devolver
-  if (q.pathname == "/")
-    filename += "index.html"
+  //-- Leer las cookies
+  const cookie = req.headers.cookie;
+  console.log("Cookie: " + cookie)
 
-  if (q.pathname != "/")
-      filename += "."+ q.pathname
-//  ./P1.png fichero valido leer png path.extname
-console.log("Fichero:" + filename);
-console.log("MIME:" + path.extname(q.pathname));
+  //-- Segun el recurso al que se accede
+  switch (q.pathname) {
 
+    //-- Pagina principal
+    case "/":
+
+      //-- No hay ninguna cookie
+      if (!cookie) {
+        content = "\nNo te conozco... Registrate!\n"
+        content = "Accede a /login"
+        recurso = "registrate.html"
+        //--- OBTENER RECURSO ENTERO
+        filename = "./" + recurso
+
+
+      //-- Hay definida una Cookie.
+      } else {
+        content = "Cokiee encontrada"
+        recurso = "index.html"
+        //--- OBTENER RECURSO ENTERO
+        filename = "./" + recurso
+
+      }
+
+      res.statusCode = 200;
+      break;
+
+    //-- Pagina de acceso
+    case "/login":
+      content = "Registrado! Cookie enviada al navegador!"
+      recurso = "registrado.html"
+      //--- OBTENER RECURSO ENTERO
+      filename = "./" + recurso
+
+      //-- ESTABLECER LA COOKIE!! En el campo set-cookie metemos la cookie que tengamos
+      res.setHeader('Set-Cookie', 'user=marta')
+      break
+
+    //-- Se intenta acceder a cualquier otro recurso
+    default:
+      recurso = q.pathname
+      filename = "./" + recurso
+  }
+
+  //-- Leer fichero
   var content_type = path.extname(q.pathname);
+
+  console.log(content)
+  //  ./P1.png fichero valido leer png path.extname
+  console.log("Fichero:" + filename);
+  console.log("MIME:" + path.extname(q.pathname));
+
 
   //-- Leer fichero
   fs.readFile(filename, function(err, data) {
@@ -50,9 +100,16 @@ console.log("MIME:" + path.extname(q.pathname));
     res.write(data);
     res.end();
   });
+console.log(content)
+}
+
+//-- Inicializar el servidor
+//-- Cada vez que recibe una petición
+//-- invoca a la funcion peticion para atenderla
+const server = http.createServer(peticion)
 
 
-}).listen(PUERTO);
+server.listen(PUERTO);
 
-console.log("Servidor corriendo...")
-console.log("Puerto: " + PUERTO)
+console.log("Servidor LISTO!")
+console.log("Escuchando en puerto: " + PUERTO)
