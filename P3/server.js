@@ -4,6 +4,8 @@ const path = require('path');
 const fs = require('fs');
 const PUERTO = 8080
 
+let carrito =""
+
 
 //-- Funcion para atender a una Peticion
 //-- req: Mensaje de solicitud
@@ -19,6 +21,9 @@ function peticion(req, res) {
   let recurso = q.pathname
   let filename =""
 
+  let producto=""
+
+
   //-- Leer las cookies
   const cookie = req.headers.cookie;
   console.log("Cookie: " + cookie)
@@ -31,9 +36,8 @@ function peticion(req, res) {
 
       //-- No hay ninguna cookie
       if (!cookie) {
-        content = "\nNo te conozco... Registrate!\n"
-        content = "Accede a /login"
-        recurso = "registrate.html"
+
+        recurso = "index.html"
         //--- OBTENER RECURSO ENTERO
         filename = "./" + recurso
 
@@ -61,19 +65,78 @@ function peticion(req, res) {
       res.setHeader('Set-Cookie', 'user=marta')
       break
 
+    case "/pan1":
+      recurso = "panaderia.html"
+      //--- OBTENER RECURSO ENTERO
+      filename = "./" + recurso
+
+      if (carrito == "" ) {
+        carrito+="pan1"
+      }else{
+      carrito+="&pan1"
+      }
+      res.setHeader('Set-Cookie', 'carrito='+carrito)
+      break
+
+    case "/pan2":
+      recurso = "panaderia.html"
+      //--- OBTENER RECURSO ENTERO
+      filename = "./" + recurso
+        if (carrito == "" ){
+          carrito+="pan2"
+        }else{
+        carrito+="&pan2"
+        }
+        res.setHeader('Set-Cookie', 'carrito='+ carrito)
+        break
     //-- Se intenta acceder a cualquier otro recurso
     default:
       recurso = q.pathname
       filename = "./" + recurso
-  }
 
+}
+  //console.log(recurso)
+    //console.log(filename)
+  if (cookie){
+   var arraycookies = cookie.split(";");
+
+   //Obtener array de cookies
+   function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
   //-- Leer fichero
   var content_type = path.extname(q.pathname);
 
-  console.log(content)
+
+  //mira en las cookies si tiene la cookie user = marta
+  console.log(arraycookies[0])
+  var user=getCookie("user")
+  console.log(user)
+  if (user == "marta") {
+      console.log("yas!")
+  }
+  compra= getCookie("carrito")
+  console.log(compra)
+  arraycompra = compra.split("&");
+  console.log(arraycompra)
+}
+
+  //console.log(content)
   //  ./P1.png fichero valido leer png path.extname
-  console.log("Fichero:" + filename);
-  console.log("MIME:" + path.extname(q.pathname));
+  //console.log("Fichero:" + filename);
+  //console.log("MIME:" + path.extname(q.pathname));
 
 
   //-- Leer fichero
@@ -100,7 +163,7 @@ function peticion(req, res) {
     res.write(data);
     res.end();
   });
-console.log(content)
+//console.log(content)
 }
 
 //-- Inicializar el servidor
