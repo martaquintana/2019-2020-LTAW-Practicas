@@ -28,6 +28,30 @@ function peticion(req, res) {
   const cookie = req.headers.cookie;
   console.log("Cookie: " + cookie)
 
+
+  //Obtener array de cookies
+  function getCookie(cookiee,cname) {
+    if (cookiee){
+     let arraycookies = cookiee.split(";");
+
+     var name = cname + "=";
+     var decodedCookie = decodeURIComponent(cookiee);
+     var ca = decodedCookie.split(';');
+     for(var i = 0; i <ca.length; i++) {
+       var c = ca[i];
+       while (c.charAt(0) == ' ') {
+         c = c.substring(1);
+       }
+       if (c.indexOf(name) == 0) {
+         return c.substring(name.length, c.length);
+       }
+     }
+     return "";
+   }
+  }
+
+
+
   //-- Segun el recurso al que se accede
   switch (q.pathname) {
 
@@ -66,29 +90,125 @@ function peticion(req, res) {
       break
 
     case "/pan1":
-      recurso = "panaderia.html"
-      //--- OBTENER RECURSO ENTERO
-      filename = "./" + recurso
+      if (cookie){
+        //mira en las cookies si tiene la cookie user = marta
+        //console.log(arraycookies[0])
+        var user=getCookie(cookie,"user")
+        console.log(user)
+        if (user == "marta") {
+            console.log("yas!")
+            recurso = "panaderia.html"
+            //--- OBTENER RECURSO ENTERO
+            filename = "./" + recurso
 
-      if (carrito == "" ) {
-        carrito+="pan1"
+            if (carrito == "" ) {
+              carrito+="pan1"
+            }else{
+            carrito+="&pan1"
+            }
+            res.setHeader('Set-Cookie', 'carrito='+carrito)
+
+        }else{
+            recurso = "registrate.html"
+            //--- OBTENER RECURSO ENTERO
+            filename = "./" + recurso
+              res.statusCode = 200;
+
+          }
       }else{
-      carrito+="&pan1"
-      }
-      res.setHeader('Set-Cookie', 'carrito='+carrito)
-      break
+          recurso = "registrate.html"
+          //--- OBTENER RECURSO ENTERO
+          filename = "./" + recurso
+            res.statusCode = 200;
+        }
+
+
+        break
 
     case "/pan2":
-      recurso = "panaderia.html"
+        if (cookie){
+          //mira en las cookies si tiene la cookie user = marta
+          //console.log(arraycookies[0])
+          var user=getCookie(cookie,"user")
+          console.log(user)
+          if (user == "marta") {
+              console.log("yas!")
+              recurso = "panaderia.html"
+              //--- OBTENER RECURSO ENTERO
+              filename = "./" + recurso
+
+              if (carrito == "" ) {
+                carrito+="pan2"
+              }else{
+              carrito+="&pan2"
+              }
+              res.setHeader('Set-Cookie', 'carrito='+carrito)
+
+          }else{
+              recurso = "registrate.html"
+              //--- OBTENER RECURSO ENTERO
+              filename = "./" + recurso
+                res.statusCode = 200;
+
+            }
+        }else{
+            recurso = "registrate.html"
+            //--- OBTENER RECURSO ENTERO
+            filename = "./" + recurso
+              res.statusCode = 200;
+          }
+
+
+          break
+     case "/pan3":
+          if (cookie){
+            //mira en las cookies si tiene la cookie user = marta
+            //console.log(arraycookies[0])
+            var user=getCookie(cookie,"user")
+            console.log(user)
+            if (user == "marta") {
+                console.log("yas!")
+                recurso = "panaderia.html"
+                //--- OBTENER RECURSO ENTERO
+                filename = "./" + recurso
+
+                if (carrito == "" ) {
+                  carrito+="pan3"
+                }else{
+                carrito+="&pan3"
+                }
+                res.setHeader('Set-Cookie', 'carrito='+carrito)
+
+            }else{
+                recurso = "registrate.html"
+                //--- OBTENER RECURSO ENTERO
+                filename = "./" + recurso
+                  res.statusCode = 200;
+
+              }
+          }else{
+              recurso = "registrate.html"
+              //--- OBTENER RECURSO ENTERO
+              filename = "./" + recurso
+                res.statusCode = 200;
+            }
+
+
+            break
+
+    case "/carrito":
+      recurso = "carrito.html"
       //--- OBTENER RECURSO ENTERO
       filename = "./" + recurso
-        if (carrito == "" ){
-          carrito+="pan2"
-        }else{
-        carrito+="&pan2"
-        }
-        res.setHeader('Set-Cookie', 'carrito='+ carrito)
-        break
+
+
+      var compra= getCookie(cookie,"carrito")
+      console.log(compra)
+      var arraycompra = compra.split("&");
+      console.log("MI PEDIDO--->    ")
+      console.log( arraycompra)
+
+      break
     //-- Se intenta acceder a cualquier otro recurso
     default:
       recurso = q.pathname
@@ -97,40 +217,24 @@ function peticion(req, res) {
 }
   //console.log(recurso)
     //console.log(filename)
-  if (cookie){
-   var arraycookies = cookie.split(";");
 
-   //Obtener array de cookies
-   function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(cookie);
-      var ca = decodedCookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }
+
   //-- Leer fichero
   var content_type = path.extname(q.pathname);
 
-
+if (cookie){
   //mira en las cookies si tiene la cookie user = marta
-  console.log(arraycookies[0])
-  var user=getCookie("user")
+  //console.log(arraycookies[0])
+  var user=getCookie(cookie,"user")
   console.log(user)
   if (user == "marta") {
       console.log("yas!")
   }
-  compra= getCookie("carrito")
+  var compra= getCookie(cookie,"carrito")
   console.log(compra)
-  arraycompra = compra.split("&");
-  console.log(arraycompra)
+  var arraycompra = compra.split("&");
+  console.log("MI PEDIDO--->    ")
+  console.log( arraycompra)
 }
 
   //console.log(content)
