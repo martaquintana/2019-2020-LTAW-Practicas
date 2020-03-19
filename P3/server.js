@@ -89,7 +89,7 @@ function peticion(req, res) {
       res.setHeader('Set-Cookie', 'user=marta')
       break
 
-    case "/pan1":
+    case "/pan":
       if (cookie){
         //mira en las cookies si tiene la cookie user = marta
         //console.log(arraycookies[0])
@@ -102,9 +102,9 @@ function peticion(req, res) {
             filename = "./" + recurso
 
             if (carrito == "" ) {
-              carrito+="pan1"
+              carrito+="pan"
             }else{
-            carrito+="&pan1"
+            carrito+="&pan"
             }
             res.setHeader('Set-Cookie', 'carrito='+carrito)
 
@@ -125,7 +125,7 @@ function peticion(req, res) {
 
         break
 
-    case "/pan2":
+    case "/magdalenas":
         if (cookie){
           //mira en las cookies si tiene la cookie user = marta
           //console.log(arraycookies[0])
@@ -133,14 +133,14 @@ function peticion(req, res) {
           console.log(user)
           if (user == "marta") {
               console.log("yas!")
-              recurso = "panaderia.html"
+              recurso = "bolleria.html"
               //--- OBTENER RECURSO ENTERO
               filename = "./" + recurso
 
               if (carrito == "" ) {
-                carrito+="pan2"
+                carrito+="magdalenas"
               }else{
-              carrito+="&pan2"
+              carrito+="&magdalenas"
               }
               res.setHeader('Set-Cookie', 'carrito='+carrito)
 
@@ -160,7 +160,7 @@ function peticion(req, res) {
 
 
           break
-     case "/pan3":
+     case "/tarta":
           if (cookie){
             //mira en las cookies si tiene la cookie user = marta
             //console.log(arraycookies[0])
@@ -168,14 +168,14 @@ function peticion(req, res) {
             console.log(user)
             if (user == "marta") {
                 console.log("yas!")
-                recurso = "panaderia.html"
+                recurso = "pasteleria.html"
                 //--- OBTENER RECURSO ENTERO
                 filename = "./" + recurso
 
                 if (carrito == "" ) {
-                  carrito+="pan3"
+                  carrito+="tarta"
                 }else{
-                carrito+="&pan3"
+                carrito+="&tarta"
                 }
                 res.setHeader('Set-Cookie', 'carrito='+carrito)
 
@@ -201,97 +201,109 @@ function peticion(req, res) {
       //--- OBTENER RECURSO ENTERO
       filename = "./" + recurso
 
-      if (cookie){
-        //mira en las cookies si tiene la cookie user = marta
-        //console.log(arraycookies[0])
-        var user=getCookie(cookie,"user")
-        console.log(user)
-        if (user == "marta") {
-            console.log("yas!")
-
-        var compra= getCookie(cookie,"carrito")
-        console.log(compra)
-        var arraycompra = compra.split("&");
-        console.log("MI PEDIDO--->    ")
-        console.log( arraycompra)
-        var npan1 = 0
-        var npan2 = 0
-        var npan3 = 0
-        ok1 = new Boolean(false)
-        ok2 = new Boolean(false)
-        ok3 = new Boolean(false)
-        ok1 = false
-        ok2 = false
-        ok3 = false
-
-        for (var i = 0; i < arraycompra.length; i++)  {
-          console.log(i)
-          if(arraycompra[i]== 'pan1'){
-             ok1= true;
-            npan1+=1
-            }
-          if(arraycompra[i]== 'pan2'){
-             ok2 = true;
-            npan2+=1
-          }
-          if(arraycompra[i]== 'pan3'){
-            ok3 =true;
-            npan3+=1
-          }
-
-          }
-
-          console.log(ok1)
-        //   var content = "No hay ningun artículo en la cesta"
-          if (ok1 | ok2 | ok3) {
-
-              if (ok1) {
-                content += npan1 + ": pan1    "
-              }
-              if (ok2) {
-                content += npan2 + ": pan2    "
-              }
-              if (ok3) {
-                content += npan3 + ": pan3    "
-              }
-          }
-        //  var content = npan1 + "pan1  " +npan2 + "pan2 " + npan3 + "pan3 "
-
-        console.log("Content")
-        console.log(content)
-
-      }
-    }
 
       break
 
 
-      case "/myform":
+    case "/myform":
+        //leer carrito de las cookies
+        if (cookie){
+          //mira en las cookies si tiene la cookie user = marta
+          //console.log(arraycookies[0])
+          var user=getCookie(cookie,"user")
+          console.log(user)
+          if (user == "marta") {
+              console.log("yas!")
 
+          var compra= getCookie(cookie,"carrito")
+          console.log(compra)
+          var arraycompra = compra.split("&");
+          console.log("MI PEDIDO--->    ")
+          console.log( arraycompra)
+          var pedido = ""
+          var npan = 0
+          var nmagdalenas = 0
+          var ntarta = 0
+          ok1 = new Boolean(false)
+          ok2 = new Boolean(false)
+          ok3 = new Boolean(false)
+          ok1 = false
+          ok2 = false
+          ok3 = false
+
+          for (var i = 0; i < arraycompra.length; i++)  {
+            if(arraycompra[i]== 'pan'){
+               ok1= true;
+              npan+=1
+              }
+            if(arraycompra[i]== 'magdalenas'){
+               ok2 = true;
+              nmagdalenas+=1
+            }
+            if(arraycompra[i]== 'tarta'){
+              ok3 =true;
+              ntarta+=1
+            }
+
+            }
+
+            console.log(ok1)
+
+            if (ok1 | ok2 | ok3) {
+
+                if (ok1) {
+                  pedido +=' <li>' + npan + ": pan   "+ '<br>'
+                }
+                if (ok2) {
+                  pedido += ' <li>' + nmagdalenas + ": magdalenas    "+ '<br>'
+                }
+                if (ok3) {
+                  pedido += ' <li>' + ntarta + ": tarta    "+ '<br>'
+                }
+            }else{
+              pedido= "no hay ningun articulo en la cesta"
+            }
+          //  var content = npan + "pan  " +nmagdalenas + "magdalenas " + ntarta + "tarta "
+
+          console.log("Content")
+          console.log(pedido)
+
+        //  res.writeHead(200, {'Content-Type': 'text/plain'});
+        }
+      }
         if (req.method === 'POST') {
           // Handle post info...
 
           var content = `
           <!DOCTYPE html>
           <html lang="es">
+          <link rel="stylesheet" href="styles.css" type="text/css">
             <head>
               <meta charset="utf-8">
               <title>PEDIDO</title>
             </head>
             <body>
-              <p>Recibido: `
+            <div class="informacion" >
+              <p>`
 
-          req.on('data', chunk => {
+            req.on('data', chunk => {
               //-- Leer los datos (convertir el buffer a cadena)
               data = chunk.toString();
 
+              var datos = data.split('&')
+              console.log(datos)
+              console.log(datos.length)
               //-- Añadir los datos a la respuesta
-              content += data;
-
+              for (var j = 0; j < datos.length; j++)  {
+                content+= datos[j] + '<br>';
+              }
+              //content += data;
+              content += "<h2> Tu pedido: </h2> "+ '<br>'+  pedido + '<br>' + "<h2> Ha sido recibido con éxito </h2>";
               //-- Fin del mensaje. Enlace al formulario
               content += `
                   </p>
-                  <a href="/">[Formulario]</a>
+                  <a class="boton" href="/">Página Inicial</a>
+                  </div>
                 </body>
               </html>
               `
@@ -355,7 +367,6 @@ function peticion(req, res) {
     //-- Generar el mensaje de respuesta
     res.writeHead(200, {'Content-Type': mime});
     res.write(data);
-    //res.write(content);
     res.end();
   });
 //console.log(content)
