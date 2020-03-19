@@ -5,7 +5,7 @@ const fs = require('fs');
 const PUERTO = 8080
 
 let carrito =""
-
+let content =""
 
 //-- Funcion para atender a una Peticion
 //-- req: Mensaje de solicitud
@@ -68,7 +68,7 @@ function peticion(req, res) {
 
       //-- Hay definida una Cookie.
       } else {
-        content = "Cokiee encontrada"
+
         recurso = "index.html"
         //--- OBTENER RECURSO ENTERO
         filename = "./" + recurso
@@ -201,18 +201,121 @@ function peticion(req, res) {
       //--- OBTENER RECURSO ENTERO
       filename = "./" + recurso
 
+      if (cookie){
+        //mira en las cookies si tiene la cookie user = marta
+        //console.log(arraycookies[0])
+        var user=getCookie(cookie,"user")
+        console.log(user)
+        if (user == "marta") {
+            console.log("yas!")
 
-      var compra= getCookie(cookie,"carrito")
-      console.log(compra)
-      var arraycompra = compra.split("&");
-      console.log("MI PEDIDO--->    ")
-      console.log( arraycompra)
+        var compra= getCookie(cookie,"carrito")
+        console.log(compra)
+        var arraycompra = compra.split("&");
+        console.log("MI PEDIDO--->    ")
+        console.log( arraycompra)
+        var npan1 = 0
+        var npan2 = 0
+        var npan3 = 0
+        ok1 = new Boolean(false)
+        ok2 = new Boolean(false)
+        ok3 = new Boolean(false)
+        ok1 = false
+        ok2 = false
+        ok3 = false
+
+        for (var i = 0; i < arraycompra.length; i++)  {
+          console.log(i)
+          if(arraycompra[i]== 'pan1'){
+             ok1= true;
+            npan1+=1
+            }
+          if(arraycompra[i]== 'pan2'){
+             ok2 = true;
+            npan2+=1
+          }
+          if(arraycompra[i]== 'pan3'){
+            ok3 =true;
+            npan3+=1
+          }
+
+          }
+
+          console.log(ok1)
+        //   var content = "No hay ningun artículo en la cesta"
+          if (ok1 | ok2 | ok3) {
+
+              if (ok1) {
+                content += npan1 + ": pan1    "
+              }
+              if (ok2) {
+                content += npan2 + ": pan2    "
+              }
+              if (ok3) {
+                content += npan3 + ": pan3    "
+              }
+          }
+        //  var content = npan1 + "pan1  " +npan2 + "pan2 " + npan3 + "pan3 "
+
+        console.log("Content")
+        console.log(content)
+
+      }
+    }
 
       break
+
+
+      case "/myform":
+
+        if (req.method === 'POST') {
+          // Handle post info...
+
+          var content = `
+          <!DOCTYPE html>
+          <html lang="es">
+            <head>
+              <meta charset="utf-8">
+              <title>PEDIDO</title>
+            </head>
+            <body>
+              <p>Recibido: `
+
+          req.on('data', chunk => {
+              //-- Leer los datos (convertir el buffer a cadena)
+              data = chunk.toString();
+
+              //-- Añadir los datos a la respuesta
+              content += data;
+
+              //-- Fin del mensaje. Enlace al formulario
+              content += `
+                  </p>
+                  <a href="/">[Formulario]</a>
+                </body>
+              </html>
+              `
+              //-- Mostrar los datos en la consola del servidor
+              console.log("Datos recibidos: " + data)
+              res.statusCode = 200;
+           });
+
+           req.on('end', ()=> {
+             //-- Generar el mensaje de respuesta
+             res.setHeader('Content-Type', 'text/html')
+             res.write(content);
+             res.end();
+           })
+           return
+        }
+
+        break
+
     //-- Se intenta acceder a cualquier otro recurso
     default:
       recurso = q.pathname
       filename = "./" + recurso
+
 
 }
   //console.log(recurso)
@@ -222,20 +325,7 @@ function peticion(req, res) {
   //-- Leer fichero
   var content_type = path.extname(q.pathname);
 
-if (cookie){
-  //mira en las cookies si tiene la cookie user = marta
-  //console.log(arraycookies[0])
-  var user=getCookie(cookie,"user")
-  console.log(user)
-  if (user == "marta") {
-      console.log("yas!")
-  }
-  var compra= getCookie(cookie,"carrito")
-  console.log(compra)
-  var arraycompra = compra.split("&");
-  console.log("MI PEDIDO--->    ")
-  console.log( arraycompra)
-}
+
 
   //console.log(content)
   //  ./P1.png fichero valido leer png path.extname
@@ -265,6 +355,7 @@ if (cookie){
     //-- Generar el mensaje de respuesta
     res.writeHead(200, {'Content-Type': mime});
     res.write(data);
+    //res.write(content);
     res.end();
   });
 //console.log(content)
