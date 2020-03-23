@@ -6,6 +6,7 @@ const PUERTO = 8080
 
 let carrito =""
 let content =""
+let productos = ["PAN CHAPATA", "PAN PISTOLA", "PAN CANDEAL", "DONUTS", "MAGDALENAS","PALMERAS", "TARTA REDONDA", "TARTA PLANCHA"];
 
 //-- Funcion para atender a una Peticion
 //-- req: Mensaje de solicitud
@@ -323,6 +324,40 @@ function peticion(req, res) {
 
         break
 
+
+        // Busqueda
+        //-- Fichero js cliente
+    case "/client.js":
+          recurso = "/client.js"
+          //--- OBTENER RECURSO ENTERO
+          filename = "./" + recurso
+          break;
+
+
+          //-- Acceso al recurso JSON
+      case "/myquery":
+          //-- Leer los parámetros recibidos en la peticion
+          const params = q.query;
+
+          //-- No hacemos nada con ellos, simplemente los mostramos en
+          //-- la consola
+          console.log("Parametros: " +params.param1 + ' y ' + params.param2);
+            mime='application/json';
+            //-- El array de productos lo pasamos a una cadena de texto,
+            //-- en formato JSON:
+            content = JSON.stringify(productos) + '\n';
+
+            //-- Generar el mensaje de respuesta
+            //-- IMPORTANTE! Hay que indicar que se trata de un objeto JSON
+            //-- en la cabecera Content-Type
+
+            return
+
+
+            break
+
+
+
     //-- Se intenta acceder a cualquier otro recurso
     default:
       recurso = q.pathname
@@ -363,7 +398,10 @@ function peticion(req, res) {
       mime = "image/png"
     if (content_type == ".jpg")
       mime = "image/jpg"
-
+    if (content_type == ".js")
+        mime = "application/javascript"
+    if (mime =='application/json')
+        data=content
     //-- Generar el mensaje de respuesta
     res.writeHead(200, {'Content-Type': mime});
     res.write(data);

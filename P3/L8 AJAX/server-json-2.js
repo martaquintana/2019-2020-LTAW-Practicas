@@ -49,12 +49,12 @@ function peticion(req, res) {
 
       //-- Acceso al recurso JSON
       case "/myquery":
-        //-- Leer los parámetros recibidos en la peticion
-        const params = q.query;
+      //-- Leer los parámetros recibidos en la peticion
+      const params = q.query;
 
-        //-- No hacemos nada con ellos, simplemente los mostramos en
-        //-- la consola
-        console.log("Parametros: " +params.param1 + ' y ' + params.param2);
+      //-- No hacemos nada con ellos, simplemente los mostramos en
+      //-- la consola
+      console.log("Parametros: " +params.param1 + ' y ' + params.param2);
 
         //-- El array de productos lo pasamos a una cadena de texto,
         //-- en formato JSON:
