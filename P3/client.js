@@ -4,27 +4,33 @@
   //-- Obtener el botón de VER del DOM
   const ver = document.getElementById('ver')
 
+
   //-- Obtener el párrafo del DOM donde mostrar el resultado
   const resultado = document.getElementById('resultado');
 
   //-- Cuando el usuario aprieta el botón de ver los productos
-  ver.onclick = ()=>{
 
+  ver.onkeyup = ()=>{
     //-- Crear objeto para hacer peticiones AJAX
     const m = new XMLHttpRequest();
 
+    var busqueda = document.getElementById('ver').value
+
     //-- Configurar la petición
-    m.open("GET","http://localhost:8080/myquery?param1=hola&param2=wei", true);
+    m.open("GET","http://localhost:8080/myquery?param1="+ busqueda, true);
+    //-- Configurar la petición
+    console.log(busqueda)
 
     //-- Cuando la haya alguna noticia sobre la peticion
     //-- ejecuta este código
+
+    //comprobar las letras aquí
     m.onreadystatechange=function(){
        //-- Petición enviada y recibida. Todo OK!
        if (m.readyState==4 && m.status==200){
 
          //-- La respuesta es un objeto JSON
-         let productos = JSON.parse(m.responseText)
-
+         var productos = JSON.parse(m.responseText)
          //-- Borrar el resultado anterior que hubiese en el párrafo
          //-- de resultado
          resultado.innerHTML = "";

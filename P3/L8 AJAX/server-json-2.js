@@ -54,7 +54,7 @@ function peticion(req, res) {
 
       //-- No hacemos nada con ellos, simplemente los mostramos en
       //-- la consola
-      console.log("Parametros: " +params.param1 + ' y ' + params.param2);
+      console.log("Parametros: " + params.param1 + ' y ' + params.param2);
 
         //-- El array de productos lo pasamos a una cadena de texto,
         //-- en formato JSON:

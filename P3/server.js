@@ -6,7 +6,7 @@ const PUERTO = 8080
 
 let carrito =""
 let content =""
-let productos = ["PAN CHAPATA", "PAN PISTOLA", "PAN CANDEAL", "DONUTS", "MAGDALENAS","PALMERAS", "TARTA REDONDA", "TARTA PLANCHA"];
+var productos = ["PAN CHAPATA", "PAN PISTOLA", "PAN CANDEAL", "DONUTS", "MAGDALENAS","PALMERAS", "TARTA REDONDA", "TARTA PLANCHA"];
 
 //-- Funcion para atender a una Peticion
 //-- req: Mensaje de solicitud
@@ -18,17 +18,13 @@ function peticion(req, res) {
   console.log("Petición: " + q.pathname)
 
   //-- Creamos varaibles para obtener terminaciones y el objeto que queremos
-
   let recurso = q.pathname
   let filename =""
-
   let producto=""
-
 
   //-- Leer las cookies
   const cookie = req.headers.cookie;
   console.log("Cookie: " + cookie)
-
 
   //Obtener array de cookies
   function getCookie(cookiee,cname) {
@@ -64,23 +60,19 @@ function peticion(req, res) {
 
       //-- No hay ninguna cookie
       if (!cookie) {
-
         recurso = "index.html"
         //--- OBTENER RECURSO ENTERO
         filename = "./" + recurso
-
-
       //-- Hay definida una Cookie.
       } else {
-
         recurso = "index.html"
         //--- OBTENER RECURSO ENTERO
         filename = "./" + recurso
-
       }
 
       res.statusCode = 200;
       break;
+
 
     //-- Pagina de acceso
     case "/login":
@@ -92,6 +84,7 @@ function peticion(req, res) {
       //-- ESTABLECER LA COOKIE!! En el campo set-cookie metemos la cookie que tengamos
       res.setHeader('Set-Cookie', 'user=marta')
       break
+
 
     case "/pan":
       if (cookie){
@@ -196,16 +189,13 @@ function peticion(req, res) {
               filename = "./" + recurso
                 res.statusCode = 200;
             }
-
-
             break
+
 
     case "/carrito":
       recurso = "carrito.html"
       //--- OBTENER RECURSO ENTERO
       filename = "./" + recurso
-
-
       break
 
 
@@ -337,47 +327,115 @@ function peticion(req, res) {
           break;
 
 
-          //-- Acceso al recurso JSON
-      case "/myquery":
+
+    case "/myquery":
           //-- Leer los parámetros recibidos en la peticion
-          const params = q.query;
-          content_type="application/json";
-          console.log(params)
-          console.log(content_type)
-          //-- No hacemos nada con ellos, simplemente los mostramos en
-          //-- la consola
-          console.log("Parametros: " +params.param1 + ' y ' + params.param2);
+      const params = q.query;
+      content_type = "application/json"
 
-            //-- El array de productos lo pasamos a una cadena de texto,
-            //-- en formato JSON:
-          content = JSON.stringify(productos) + '\n';
-
-            //-- Generar el mensaje de respuesta
-            //-- IMPORTANTE! Hay que indicar que se trata de un objeto JSON
-            //-- en la cabecera Content-Type
-
-           break
+      console.log("Parametros: " + params.param1 );
 
 
+      //buscar lo productos que empiezan por params.param1
+
+      var productos_encontrados = []
+
+      if (params.param1 != ""){
+        for (var i=0;i<productos.length ;i++) {
+            var busq = params.param1.toUpperCase()
+            if(productos[i].startsWith(busq)){
+              productos_encontrados.push(productos[i])
+            }
+        }
+        console.log(productos_encontrados)
+      }
+        content = JSON.stringify(productos_encontrados) + '\n';
+        //se envia al final
+
+    break
+
+
+    case "/busqueda":
+      if (req.method === 'POST') {
+          var content = `
+          <!DOCTYPE html>
+          <html lang="es">
+          <link rel="stylesheet" href="styles.css" type="text/css">
+            <head>
+              <meta charset="utf-8">
+              <title>Busqueda</title>
+            </head>
+            <body>
+            <div class="informacion" >
+              <p>  <h2> Tu Búsqueda es: </h2> `
+
+                req.on('data', chunk => {
+                  //-- Leer los datos (convertir el buffer a cadena)
+                  data = chunk.toString();
+
+                  var datos = data.split('=')
+                  console.log(datos)
+                  console.log(datos.length)
+
+                  var info = datos[1].toUpperCase().replace("+"," ")
+
+                  if (info == 'PAN PISTOLA' | info == 'PAN CHAPATA' | info == 'PAN CANDEAL' ){
+                      info +=  " : Nuestro pan esta hecho con masa madre y con productos 100% naturales "
+                  }
+                  if (info == 'TARTA REDONDA'){
+                      info += " : Esta tarta contiene 12 raciones, pidela a tu gusto!"
+                  }
+                  if (info == 'TARTA PLANCHA'){
+                      info += " : Esta tarta contiene  30 raciones, pidela a tu gusto!"
+                  }
+                  if (info == 'DONUTS'){
+                      info += " : Reposteria Casera, Bombón de cocolate, el clásico de azúcar o los nuevos de colores tu eliges! "
+                  }
+                  if (info == 'PALMERAS'){
+                      info += " : Reposteria Casera, hechas con masa de hojaldre, bañadas de chocolate o azúcar."
+                  }
+                  if (info == 'MAGDALENAS'){
+                      info += " : Reposteria Casera, perfectas para desayunar. A tu gusto tamaño pequeño o grande, con o sin azúcar."
+                  }
+
+                  content+= info + '<br>';
+
+                  //-- Fin del mensaje. Enlace al formulario
+                  content += `
+                      </p>
+                      <a class="boton" href="/">Página Inicial</a>
+                      </div>
+                    </body>
+                  </html>
+                  `
+                  //-- Mostrar los datos en la consola del servidor
+                  console.log("Datos recibidos: " + data)
+                  res.statusCode = 200;
+               });
+
+              req.on('end', ()=> {
+                //-- Generar el mensaje de respuesta
+                res.setHeader('Content-Type', 'text/html')
+                res.write(content);
+                res.end();
+              })
+              return
+            }
+        break
 
     //-- Se intenta acceder a cualquier otro recurso
     default:
       recurso = q.pathname
       filename = "./" + recurso
 
-
 }
   //console.log(recurso)
     //console.log(filename)
-
-
-
-
   //console.log(content)
   //  ./P1.png fichero valido leer png path.extname
   //console.log("Fichero:" + filename);
   //console.log("MIME:" + path.extname(q.pathname));
-console.log("MIME:"+ content_type)
+  console.log("MIME:"+ content_type)
   if (content_type != 'application/json'){
       //-- Leer fichero
       fs.readFile(filename, function(err, data) {
@@ -415,8 +473,6 @@ console.log("MIME:"+ content_type)
         res.writeHead(200, {'Content-Type': mime});
         res.write(data);
         res.end();
-
-
   }
 }
 
@@ -424,7 +480,6 @@ console.log("MIME:"+ content_type)
 //-- Cada vez que recibe una petición
 //-- invoca a la funcion peticion para atenderla
 const server = http.createServer(peticion)
-
 
 server.listen(PUERTO);
 
