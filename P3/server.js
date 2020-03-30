@@ -51,6 +51,9 @@ function peticion(req, res) {
    }
   }
 
+  //-- Leer fichero
+  var content_type = path.extname(q.pathname);
+
 
 
   //-- Segun el recurso al que se accede
@@ -338,23 +341,22 @@ function peticion(req, res) {
       case "/myquery":
           //-- Leer los parámetros recibidos en la peticion
           const params = q.query;
-
+          content_type="application/json";
+          console.log(params)
+          console.log(content_type)
           //-- No hacemos nada con ellos, simplemente los mostramos en
           //-- la consola
           console.log("Parametros: " +params.param1 + ' y ' + params.param2);
-            mime='application/json';
+
             //-- El array de productos lo pasamos a una cadena de texto,
             //-- en formato JSON:
-            content = JSON.stringify(productos) + '\n';
+          content = JSON.stringify(productos) + '\n';
 
             //-- Generar el mensaje de respuesta
             //-- IMPORTANTE! Hay que indicar que se trata de un objeto JSON
             //-- en la cabecera Content-Type
 
-            return
-
-
-            break
+           break
 
 
 
@@ -369,45 +371,53 @@ function peticion(req, res) {
     //console.log(filename)
 
 
-  //-- Leer fichero
-  var content_type = path.extname(q.pathname);
-
 
 
   //console.log(content)
   //  ./P1.png fichero valido leer png path.extname
   //console.log("Fichero:" + filename);
   //console.log("MIME:" + path.extname(q.pathname));
+console.log("MIME:"+ content_type)
+  if (content_type != 'application/json'){
+      //-- Leer fichero
+      fs.readFile(filename, function(err, data) {
 
+        //-- Fichero no encontrado. Devolver mensaje de error
+        if (err) {
+          res.writeHead(404, {'Content-Type': 'text/html'});
+          return res.end("404 Not Found");
+        }
 
-  //-- Leer fichero
-  fs.readFile(filename, function(err, data) {
+        //-- Tipo mime por defecto: html
 
-    //-- Fichero no encontrado. Devolver mensaje de error
-    if (err) {
-      res.writeHead(404, {'Content-Type': 'text/html'});
-      return res.end("404 Not Found");
-    }
+        let mime = "text/html"
+        if (content_type == ".css")
+          mime = "text/css"
+        if (content_type == ".png")
+          mime = "image/png"
+        if (content_type == ".jpg")
+          mime = "image/jpg"
+        if (content_type == ".js")
+            mime = "application/javascript"
 
-    //-- Tipo mime por defecto: html
+        //-- Generar el mensaje de respuesta
+        res.writeHead(200, {'Content-Type': mime});
+        res.write(data);
+        res.end();
+      });
+    //console.log(content)
 
-    let mime = "text/html"
-    if (content_type == ".css")
-      mime = "text/css"
-    if (content_type == ".png")
-      mime = "image/png"
-    if (content_type == ".jpg")
-      mime = "image/jpg"
-    if (content_type == ".js")
-        mime = "application/javascript"
-    if (mime =='application/json')
+  }else{
+        mime = "application/json"
         data=content
-    //-- Generar el mensaje de respuesta
-    res.writeHead(200, {'Content-Type': mime});
-    res.write(data);
-    res.end();
-  });
-//console.log(content)
+        console.log(content_type)
+        //-- Generar el mensaje de respuesta
+        res.writeHead(200, {'Content-Type': mime});
+        res.write(data);
+        res.end();
+
+
+  }
 }
 
 //-- Inicializar el servidor
