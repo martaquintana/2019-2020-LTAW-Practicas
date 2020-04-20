@@ -19,7 +19,7 @@ Resolución:
 
 He implementado todo lo que se pide. Primero hay que ir hasta el directorio de mi práctica P4, luego hay que ejecutarlo de esta forma:
 
-Terminal:  node chat-server.js
+Terminal para arrancar el servidor:  node chat-server.js
 
 NAVEGADOR(Chrome o Firefox, mejor): http://localhost:8080/ , poniendo http://localhost:8080/woala hay un mensaje.
 
