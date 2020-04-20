@@ -3,4 +3,5 @@ Mis prácticas de la asignatura Laboratorio de Tecnologías audiovisuales en la 
 
 Todas las prácticas están comentadas con un README.md donde se especifica su funcionamiento.
 
-Prácticas realizadas por: Marta Quintana Portales 
+Prácticas realizadas por: MARTA QUINTANA PORTALES
+=================================================
