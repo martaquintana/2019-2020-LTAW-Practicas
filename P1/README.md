@@ -23,6 +23,7 @@ Documentos HTML, horas de estilo (.css) e imágenes HECHO
 
 
 Resolución:
+
 Primero hay que ir hasta el directorio de mi práctica P1, luego hay que ejecutarlo de esta forma:
 
 1. Terminal para arrancar el servidor : node server.js
