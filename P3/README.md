@@ -23,5 +23,7 @@ Si pinchas 'añadir a la cesta' en cada producto se van  añadiendo valores de c
 Solo puedes añadir a la cesta si estas registrado, si no estas registrado al pinchar en 'añadir a la cesta' te lleva a que te registres.
 
 Botón Quiero registrarme: Crea una cookie con un user (marta) y  te lleva a una página que te dice que estas registrado.
-Botón Pedido : Te lleva a un formulario para que lo rellenes, al enviarlo se genera una página con tus datos, con los productos que has pedido (lee las cookies) **y la cantidad de cada uno.** 
+
+Botón Pedido : Te lleva a un formulario para que lo rellenes, al enviarlo se genera una página con tus datos, con los productos que has pedido (lee las cookies) **y la cantidad de cada uno.**
+
 Botón Búsqueda : te lleva a http://localhost:8080/busqueda.html y con peticiones ligeras para el servidor (Peticiones AJAX) te muestra los productos que cumplen lo que buscas, si pones el producto entero correcto (da igual si lo pones en mayúscula o en minúscula) aparece información concreta. Por ejemplo puedes probar buscando 'Tarta plancha', 'Donuts', 'Palmeras', 'Pan candeal'...
