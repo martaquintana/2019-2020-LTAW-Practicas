@@ -24,9 +24,9 @@ Documentos HTML, horas de estilo (.css) e imágenes HECHO
 
 Resolución:
 
-Terminal para arrancar el servidor : node server.js
+1. Terminal para arrancar el servidor : node server.js
 
-Navegador :  http://localhost:8080/
+2. Navegador :  http://localhost:8080/
 
 
-Mis productos son secciones: Panadería, Bollería y Pastelería; para ver cada producto/sección pinchar encima de cada imagen (al poner el ratón encima se mueve para destacar nuestra selección), al hacer click nos llevará a la página correspondiente. Cada una de ellas es un html distinto. Para volver a la pantalla principal dar al botón volver <- del propio navegador.
+3. Mis productos son secciones: Panadería, Bollería y Pastelería; para ver cada producto/sección pinchar encima de cada imagen (al poner el ratón encima se mueve para destacar nuestra selección), al hacer click nos llevará a la página correspondiente. Cada una de ellas es un html distinto. Para volver a la pantalla principal dar al botón volver <- del propio navegador.
