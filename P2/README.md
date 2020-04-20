@@ -16,8 +16,9 @@ Como base de datos usaremos SQLite
 Resolución:
 
 Para la visualización de todos los contenidos de esta práctica:
+Primero hay que ir hasta el directorio de mi práctica P2, luego hay que ejecutarlo de esta forma:
 
-1. Terminal para arrancar el server ir al directorio de P3/mi_tienda_web y ejecutar: python3 manage.py runserver
+1. Terminal para arrancar el server ir al directorio de P2/mi_tienda_web y ejecutar: python3 manage.py runserver
 
 2. Navegador : http://localhost:8000/mi_panaderia/
 
