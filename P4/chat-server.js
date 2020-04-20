@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 //-- Otra vista de prueba
 app.get('/woala', (req, res) => {
-  res.send('WOALA!! :-D  :-)');
+  res.send('WOALA!! :-D  :-) ÁNIMO CON LA LUCHA CONTRA EL CORONAVIRUS!! ');
   console.log("Acceso a /woala");
 });
 
