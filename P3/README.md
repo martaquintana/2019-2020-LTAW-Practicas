@@ -15,15 +15,18 @@ Se implementará en Node.js, partiendo del código de la práctica 1.
 
 Resolución:
 
-Terminal para arrancar el servidor:  node server.js  
-Navegador:   http://localhost:8080/
+Primero hay que ir hasta el directorio de mi práctica P3, luego hay que ejecutarlo de esta forma:
 
-Cada una de mis secciones (Panadería Bolleria y Pastelería) solamente tienen un producto para hacerlo más sencillo y como en principio sólo eran 3 productos lo he hecho de esta forma.
-Si pinchas 'añadir a la cesta' en cada producto se van  añadiendo valores de cada producto a la cookie 'carrito' para luego en el pedido poder leerlo.
+1. Terminal para arrancar el servidor:  node server.js  
+
+2. Navegador:   http://localhost:8080/
+
+3. Cada una de mis secciones (Panadería Bolleria y Pastelería) solamente tienen un producto para hacerlo más sencillo y como en principio sólo eran 3 productos lo he hecho de esta forma.
+4. Si pinchas 'añadir a la cesta' en cada producto se van  añadiendo valores de cada producto a la cookie 'carrito' para luego en el pedido poder leerlo.
 Solo puedes añadir a la cesta si estas registrado, si no estas registrado al pinchar en 'añadir a la cesta' te lleva a que te registres.
 
-Botón Quiero registrarme: Crea una cookie con un user (marta) y  te lleva a una página que te dice que estas registrado.
+5. Botón Quiero registrarme: Crea una cookie con un user (marta) y  te lleva a una página que te dice que estas registrado.
 
-Botón Pedido : Te lleva a un formulario para que lo rellenes, al enviarlo se genera una página con tus datos, con los productos que has pedido (lee las cookies) **y la cantidad de cada uno.**
+6. Botón Pedido : Te lleva a un formulario para que lo rellenes, al enviarlo se genera una página con tus datos, con los productos que has pedido (lee las cookies) **y la cantidad de cada uno.**
 
-Botón Búsqueda : te lleva a http://localhost:8080/busqueda.html y con peticiones ligeras para el servidor (Peticiones AJAX) te muestra los productos que cumplen lo que buscas, si pones el producto entero correcto (da igual si lo pones en mayúscula o en minúscula) aparece información concreta. Por ejemplo puedes probar buscando 'Tarta plancha', 'Donuts', 'Palmeras', 'Pan candeal'...
+7. Botón Búsqueda : te lleva a http://localhost:8080/busqueda.html y con peticiones ligeras para el servidor (Peticiones AJAX) te muestra los productos que cumplen lo que buscas, si pones el producto entero correcto (da igual si lo pones en mayúscula o en minúscula) aparece información concreta. Por ejemplo puedes probar buscando 'Tarta plancha', 'Donuts', 'Palmeras', 'Pan candeal'...
