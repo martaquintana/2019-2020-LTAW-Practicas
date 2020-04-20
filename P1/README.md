@@ -1,5 +1,4 @@
 # Práctica 1  MARTA QUINTANA PORTALES
-==============================================
 
 Aquí se puede ver gracias a los servidores de github la página web de la tienda.
 https://martaquintana.github.io/2019-2020-LTAW-Practicas/P1
