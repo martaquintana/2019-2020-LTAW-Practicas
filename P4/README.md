@@ -12,16 +12,16 @@ El servidor, además, responderá a estos comandos:
 /list: Devolverá el número de usuarios conectados
 /hello: El servidor nos devolverá el saludo
 /date: Nos devolverá la fecha
-Cuando el servidor detecta que llega un mensaje que empieza por el carácter '/', lo interpretará como un comando y lo procesará (pero no lo enviará al resto de usuarios del chat). El resto de mensjaes que no sean comandos sí los re-enviará a los participantes del chat.
+Cuando el servidor detecta que llega un mensaje que empieza por el carácter '/', lo interpretará como un comando y lo procesará (pero no lo enviará al resto de usuarios del chat). El resto de mensajes que no sean comandos sí los re-enviará a los participantes del chat.
 
 
 Resolución:
 
-Primero hay que ir hasta el directorio de mi práctica P4:
+He implementado todo lo que se pide. Primero hay que ir hasta el directorio de mi práctica P4, luego hay que ejecutarlo de esta forma:
 
 Terminal:  node chat-server.js
 
-NAVEGADOR(Chrome o Firefox): http://localhost:8080/ , poniendo http://localhost:8080/woala hay un mensaje.
+NAVEGADOR(Chrome o Firefox, mejor): http://localhost:8080/ , poniendo http://localhost:8080/woala hay un mensaje.
 
 Contador de usuario: El servidor envia un mesaje que se muestra en la pantalla "Eres el usuario ---> X"
 
