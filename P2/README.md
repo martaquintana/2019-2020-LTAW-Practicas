@@ -17,17 +17,17 @@ Resolución:
 
 Para la visualización de todos los contenidos de esta práctica:
 
-Terminal para arrancar el server ir al directorio de P3/mi_tienda_web y ejecutar: python3 manage.py runserver
+1. Terminal para arrancar el server ir al directorio de P3/mi_tienda_web y ejecutar: python3 manage.py runserver
 
-Navegador : http://localhost:8000/mi_panaderia/
+2. Navegador : http://localhost:8000/mi_panaderia/
 
-En cada una de mis secciones (Panadería, Bollería y Pastelería) te salen unos productos que se leen de una base de datos y nos dice el nombre el precio y el stock de cada producto.
+3. En cada una de mis secciones (Panadería, Bollería y Pastelería) te salen unos productos que se leen de una base de datos y nos dice el nombre el precio y el stock de cada producto.
 
-Para hacer un pedido hacer click en el boton 'Hacer pedido' que te lleva a http://localhost:8000/mi_panaderia/formulario/ al enviar se genera una página de respuesta: ' Datos recibidos!!. Comprador: xxx'.
+4. Para hacer un pedido hacer click en el boton 'Hacer pedido' que te lleva a http://localhost:8000/mi_panaderia/formulario/ al enviar se genera una página de respuesta: ' Datos recibidos!!. Comprador: xxx'.
 
-Para ver todos los pedidos que se han hecho ir a  http://localhost:8000/mi_panaderia/pedidos/
+5.Para ver todos los pedidos que se han hecho ir a  http://localhost:8000/mi_panaderia/pedidos/
 
-Al final de la página podemos ver la fecha que se va actualizado y un boton 'Lista de nuestros productos' que nos lleva a http://localhost:8000/mi_panaderia/list/  donde se genera dinámicamente una página con los productos y precio que se leen de la base de datos.
+6.Al final de la página podemos ver la fecha que se va actualizado y un boton 'Lista de nuestros productos' que nos lleva a http://localhost:8000/mi_panaderia/list/  donde se genera dinámicamente una página con los productos y precio que se leen de la base de datos.
 
 
-Si necesitas ver las bases de datos en http://localhost:8000/admin  me avisas y te hago captura de pantalla o te doy la clave y contraseña si es necesario. Está implementado todo lo se pedía en la práctica y a lo largo de las clases.
+7. Si necesitas ver las bases de datos en http://localhost:8000/admin  me avisas y te hago captura de pantalla o te doy la clave y contraseña si es necesario. Está implementado todo lo se pedía en la práctica y a lo largo de las clases.
