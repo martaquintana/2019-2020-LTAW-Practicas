@@ -12,19 +12,23 @@ El servidor, además, responderá a estos comandos:
 /list: Devolverá el número de usuarios conectados
 /hello: El servidor nos devolverá el saludo
 /date: Nos devolverá la fecha
+
 Cuando el servidor detecta que llega un mensaje que empieza por el carácter '/', lo interpretará como un comando y lo procesará (pero no lo enviará al resto de usuarios del chat). El resto de mensajes que no sean comandos sí los re-enviará a los participantes del chat.
 
 
 Resolución:
 
-He implementado todo lo que se pide. Primero hay que ir hasta el directorio de mi práctica P4, luego hay que ejecutarlo de esta forma:
+Primero hay que ir hasta el directorio de mi práctica P4, luego hay que ejecutarlo de esta forma:
 
-Terminal para arrancar el servidor:  node chat-server.js
+1. Terminal para arrancar el servidor:  node chat-server.js
 
-NAVEGADOR(Chrome o Firefox, mejor): http://localhost:8080/ , poniendo http://localhost:8080/woala hay un mensaje.
+2. NAVEGADOR(Chrome o Firefox, mejor): http://localhost:8080/ , poniendo http://localhost:8080/woala hay un mensaje.
 
-Contador de usuario: El servidor envia un mesaje que se muestra en la pantalla "Eres el usuario ---> X"
+3. Para enviar un mensaje escribir en la barra de escritura y dar a SEND. La conversación se mostrará en la parte inferior.
 
-Evento cmd: hay que poner en el mensaje a enviar los comandos, he implementado los comandos indicados en el enunciado de la práctica como se especifica: /help, /date, /list y /hello . Y solo se muestra en el usuario que pone el comando.
+4. Contador de usuario: El servidor envia un mesaje que se muestra en la pantalla "Eres el usuario ---> X"
 
-He añadido que al iniciar el chat el server te mande un mensaje de 'Te has unido al chat' cuando hay un usuario nuevo el server envía un 'new user join the chat' y si algún usuario se desconecta el server envía 'un usuario se ha desconectado'. He añadido un poco de estilo con chat-style.css
+5. Evento cmd: cuando el servidor detecte que el mensaje que empieza por '/', lo interpretará como comando y le enviará un mensaje solamente al usuario que haya enviado el comando con la información del comando que ha escrito: /help, /date, /list o /hello .
+
+6. Al iniciar el chat el server te mande un mensaje de 'Te has unido al chat', cuando hay un usuario nuevo el server envía un 'new user join the chat' y si algún usuario se desconecta el server envía 'un usuario se ha desconectado'. 
+He añadido un poco de estilo con chat-style.css
