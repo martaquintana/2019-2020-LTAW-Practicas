@@ -18,12 +18,11 @@ El servidor es un programa, escrito en node.js (javascript). Recibe peticiones d
 Componentes obligatorios
 
 Usar el módulo http de Node.js HECHO
+
 Documentos HTML, horas de estilo (.css) e imágenes HECHO
 
 
 Resolución:
-
-Funcionamiento de mi panaderia:
 
 Terminal para arrancar el servidor : node server.js
 
