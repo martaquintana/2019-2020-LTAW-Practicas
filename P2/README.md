@@ -25,9 +25,9 @@ Para la visualización de todos los contenidos de esta práctica:
 
 4. Para hacer un pedido hacer click en el boton 'Hacer pedido' que te lleva a http://localhost:8000/mi_panaderia/formulario/ al enviar se genera una página de respuesta: ' Datos recibidos!!. Comprador: xxx'.
 
-5.Para ver todos los pedidos que se han hecho ir a  http://localhost:8000/mi_panaderia/pedidos/
+5. Para ver todos los pedidos que se han hecho ir a  http://localhost:8000/mi_panaderia/pedidos/
 
-6.Al final de la página podemos ver la fecha que se va actualizado y un boton 'Lista de nuestros productos' que nos lleva a http://localhost:8000/mi_panaderia/list/  donde se genera dinámicamente una página con los productos y precio que se leen de la base de datos.
+6. Al final de la página podemos ver la fecha que se va actualizado y un boton 'Lista de nuestros productos' que nos lleva a http://localhost:8000/mi_panaderia/list/  donde se genera dinámicamente una página con los productos y precio que se leen de la base de datos.
 
 
 7. Si necesitas ver las bases de datos en http://localhost:8000/admin  me avisas y te hago captura de pantalla o te doy la clave y contraseña si es necesario. Está implementado todo lo se pedía en la práctica y a lo largo de las clases.
